@@ -1,0 +1,55 @@
+
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="container-5 w-container">
+    <img src="{{source.logo.url}}" loading="lazy" alt="{{source.name}}" class="main-logo">
+    <img src="{{destination.logo.url}}" loading="lazy" alt="{{destination.name}}" class="main-logo">
+    <h1 class="heading-4">Connect {{source.name}} to {{destination.name}}</h1>
+  </div>
+  <div class="integration-platforms w-container">
+    <h4 class="heading-6">Software companies that provide {{source.name}} to {{destination.name}} integration</h4>
+    {% for integration_platform in integration_platforms %}
+    <a href="{{integration_platform.website}}" target="_blank" rel="noreferrer noopener"><img src="{{integration_platform.logo.url}}" loading="lazy" alt="{{integration_platform.name}}" class="integration-platform"></a>
+    {% endfor %}
+  </div>
+  <div class="container-7 w-container">
+    <h4>More {{source.name}} integrations</h4>
+    <div class="w-row">
+      <div class="w-col w-col-4">
+        {% for m_destination in more_destinations[0] %}
+        <p><a href="/connect/{{source.slug}}-to-{{m_destination.slug}}/" class="link">{{source.name}} to {{m_destination.name}}</a></p>
+        {% endfor %}
+      </div>
+      <div class="w-col w-col-4">
+        {% for m_destination in more_destinations[1] %}
+        <p><a href="/connect/{{source.slug}}-to-{{m_destination.slug}}/" class="link">{{source.name}} to {{m_destination.name}}</a></p>
+        {% endfor %}
+      </div>
+      <div class="w-col w-col-4">
+        {% for m_destination in more_destinations[2] %}
+        <p><a href="/connect/{{source.slug}}-to-{{m_destination.slug}}/" class="link">{{source.name}} to {{m_destination.name}}</a></p>
+        {% endfor %}
+      </div>
+    </div>
+    <h4>More {{destination.name}} integrations</h4>
+    <div class="w-row">
+      <div class="w-col w-col-4">
+        {% for m_source in more_sources[0] %}
+        <p><a href="/connect/{{m_source.slug}}-to-{{destination.slug}}/" class="link">{{m_source.name}} to {{destination.name}}</a></p>
+        {% endfor %}
+      </div>
+      <div class="w-col w-col-4">
+        {% for m_source in more_sources[1] %}
+        <p><a href="/connect/{{m_source.slug}}-to-{{destination.slug}}/" class="link">{{m_source.name}} to {{destination.name}}</a></p>
+        {% endfor %}
+      </div>
+      <div class="w-col w-col-4">
+        {% for m_source in more_sources[2] %}
+        <p><a href="/connect/{{m_source.slug}}-to-{{destination.slug}}/" class="link">{{m_source.name}} to {{destination.name}}</a></p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+	<section class="bg-light text-center content_30 pb-0 pt-80">
+		<div class="container px-xl-0">
+			<div class="row justify-content-center">
+				<h1 class="col-lg-9 small">
+					{{source.name}} to {{destination.name}} integration
+				</h1>
+				<div class="col-lg-8 col-md-10 mt-15 mb-50 f-18 medium op-7 color-heading text-adaptive">
+					Streamline your {{source.name}} data to {{destination.name}}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="mb-30 col-lg-3 col-md-5 col-sm-6">
+					<div class="d-flex justify-content-center align-items-center block h-160 mw-270 mx-auto radius10">
+						<img src="{{source.logo}}" alt="{{source.name}}" class="img-fluid">
+					</div>
+				</div>
+				<div class="mb-30 col-lg-3 col-md-5 col-sm-6">
+					<div class="d-flex justify-content-center align-items-center block h-160 mw-270 mx-auto radius10">
+						<img src="{{destination.logo}}" alt="{{destination.name}}" class="img-fluid">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% if integration_platforms|length > 1 %}
+		<section class="pb-90 bg-light content_33 pt-40">
+			<div class="container px-xl-0">
+				<div class="row justify-content-center">
+					<div class="col-xl-10">
+						<p class="mb-10 text-center bold f-28">
+							Best integration platforms
+						</p>
+						<div class="table-responsive-shadow">
+							<div class="table-responsive-xl">
+								<table class="table table-borderless table-striped m-0 w-970">
+									<thead>
+										<tr>
+											<th class="color-heading f-14 semibold text-uppercase sp-20" scope="col">
+												Company
+											</th>
+											<th class="color-heading f-14 semibold text-uppercase sp-20" scope="col">
+												&nbsp;
+											</th>
+											<th class="color-heading f-14 semibold text-uppercase sp-20" scope="col">
+												G2 Rating
+											</th>
+											<th class="color-heading f-14 semibold text-uppercase sp-20" scope="col">
+												Price
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for integration_platform in integration_platforms %}
+										<tr>
+											<td>
+												<a href="{{integration_platform.website}}" target="_blank" rel="noreferrer noopener"><img src="{{integration_platform.logo.url}}" alt="{{integration_platform.name}}"></a>
+											</td>
+											<td class="color-heading">
+												{{integration_platform.shortbio if integration_platform.shortbio is not none}}
+											</td>
+											<td>
+												{{integration_platform.g2CrowdRating if integration_platform.g2CrowdRating is not none}}
+											</td>
+											<td>
+												{% if integration_platform.pricingUrl is not none %}
+												<a href="{{integration_platform.pricingUrl}}" target="_blank" rel="noreferrer noopener nofollow">Check pricing</a>
+												{% else %}
+												<a href="{{integration_platform.website}}" target="_blank" rel="noreferrer noopener nofollow">Contact to get pricing</a>
+												{% endif %}
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	{% else %}
+			<section class="pb-100 bg-light text-center call_to_action_15 pt-20">
+				<div class="container px-xl-0">
+					<div class="row justify-content-center">
+						<div class="col-xl-10">
+							<div class="px-20 pt-65 pb-75 radius10 inner">
+								<div class="row justify-content-center">
+									<div class="col-lg-8 col-md-10">
+										<img src="{{integration_platforms[0].logo.url}}" alt="{{integration_platforms.name}}" class="mw-400 mb-15">
+										<div class="color-heading text-adaptive">
+											We have created a new product that will help designers, developers 
+											<br>and companies create websites for their startups quickly and easily.
+										</div>
+										<div>
+											<a href="{{integration_platforms[0].website}}" class="btn mt-40 action-1" target="_blank" rel="noreferrer noopener nofollow" >
+												Explore
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	{% endif %}
+				<section class="pt-50 pb-50 bg-light blog_21">
+					<div class="container px-xl-0">
+						<div class="row justify-content-center">
+							<div class="col-12 col-lg-10 col-xl-8">
+								<p class="mb-40 pl-15 pr-15 color-main f-14 lh-30 bold text-uppercase sp-20 radius10 link breadcrumbs"></a>
+									More integrations
+								</p>
+								<h3 class="mb-30 color-main">
+										Do more with {{destination.name}}
+								</h3>
+								<div class="mb-40 w-full hr h-2 bg-gray">
+								</div>
+								<div class="d-flex align-items-center flex-wrap">
+									{% for available_source in available_sources %}
+									<a href="https://{{available_source.slug}}.{{domain}}" class="mr-15 mb-lg-0 pl-10 bg-gray color-heading f-14 bold text-uppercase sp-20 radius10 link pr-10 lh-30 mt-15 mb-15">
+										{{available_source.name}} to {{destination.name}}
+									</a>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+					<section class="pt-50 pb-50 bg-light blog_21">
+						<div class="container px-xl-0">
+							<div class="row justify-content-center">
+								<div class="col-12 col-lg-10 col-xl-8">
+									<h3 class="mb-30 color-main">
+											Connect {{source.name}} to
+									</h3>
+									<div class="mb-40 w-full hr h-2 bg-gray">
+									</div>
+									<div class="d-flex align-items-center flex-wrap">
+										{% for available_destination in available_destinations %}
+										<a href="https://{{source.slug}}.{{available_destination.domain}}" class="mr-15 mb-15 mb-lg-0 pl-10 pr-10 bg-gray color-heading f-14 lh-30 bold text-uppercase sp-20 radius10 link mt-15">
+											to {{available_destination.name}}
+										</a>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+{% endblock %}

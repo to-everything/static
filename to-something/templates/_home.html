@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container-3 w-container">
+    <h1 class="heading-4">Find an integration platform to move around your data</h1>
+    {% for connector in connectors %}
+    <a href="/connect/{{connector.slug}}/"><img src="{{connector.logo.url}}" loading="lazy" alt="{{connector.name}}" class="connector"></a>
+    {% endfor %}
+  </div>
+{% endblock %}

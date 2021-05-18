@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="container-5 w-container">
+    <img src="{{connector.logo.url}}" loading="lazy" alt="{{connector.name}}" class="main-logo">
+    <h1 class="heading-4">Connect {{connector.name}} to whatever you want</h1>
+    <p>Select destination for you data. We&#x27;ll help you to find an integration partner.</p>
+  </div>
+  <div class="container-6 w-container">
+    {% for child_connector in connectors %}
+    {% if connector.type == 'source' %}
+    <a href="/connect/{{connector.slug}}-to-{{child_connector.slug}}/">
+    {% else %}
+    <a href="/connect/{{child_connector.slug}}-to-{{connector.slug}}/">
+    {% endif %}
+      <img src="{{child_connector.logo.url}}" loading="lazy" alt="{{child_connector.name}}" class="connector"></a>
+    {% endfor %}
+  </div>
+ 
+  {% endblock %}

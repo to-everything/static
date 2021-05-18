@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+	<section class="bg-light text-center content_30 pb-0 pt-80">
+		<div class="container px-xl-0">
+			<div class="row justify-content-center">
+				<h1 class="col-lg-9 aos-animate small">
+					Connect your data to {{destination.name}}
+				</h1>
+				<div class="col-lg-8 col-md-10 mt-15 mb-50 f-18 medium op-7 color-heading text-adaptive">
+					Streamline your data to {{destination.name}}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				{% for source in sources %}
+				<div class="mb-30 col-lg-3 col-md-5 col-sm-6">
+					<div class="d-flex justify-content-center align-items-center block h-160 mw-270 mx-auto radius10">
+						<a href="https://{{source.slug}}.{{domain}}"><img src="{{source.logo}}" alt="{{source.name}} to {{destination.name}}" class="img-fluid"></a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
